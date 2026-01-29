@@ -61,3 +61,28 @@ While the Random Forest model performed well, it relied on manual feature engine
 | **Random Forest** | Yes (Manual) | 100% | Fast training, interpretable. |
 | **1D-CNN (Deep Learning)** | No (Automatic) | 100% | No domain expertise needed, scalable to complex data. |
 ---
+---
+##  Phase 3: Prognostics (Predicting Time-to-Failure)
+The final phase moved beyond simple classification ("Is it broken?") to **Regression** ("When will it break?"). The goal was to estimate the **Remaining Useful Life (RUL)** of the bearing at any given moment.
+
+### **The Approach**
+Since the dataset did not have explicit "Time Left" labels, I created a custom target variable based on **Linear Degradation**:
+* **Start of Test:** RUL = 100% (1.0)
+* **End of Test:** RUL = 0% (0.0)
+
+### **The Model (CNN Regressor)**
+I modified the previous CNN architecture for regression:
+* **Loss Function:** Changed from `Binary Crossentropy` to **Mean Squared Error (MSE)** to minimize the distance between predicted and actual time.
+* **Output Layer:** Used a single neuron with **Linear Activation** (instead of Sigmoid) to output a continuous time value.
+
+### **Results**
+* **Performance:** The model achieved a **Mean Absolute Error (MAE) of ~0.13**.
+* **Interpretation:** The system can predict the remaining life of the machinery with an accuracy of **±13%**.
+* **Visual Proof:** The predicted degradation curve (Red) closely follows the actual physical degradation (Blue), proving the model learned the "physics of failure" effectively.
+
+---
+##  Conclusion
+This project demonstrates a complete **End-to-End Predictive Maintenance Pipeline**:
+1.  **Phase 1:** Established a baseline with **Random Forest** (Feature Engineering).
+2.  **Phase 2:** Automated fault detection with **Deep Learning (CNN)**.
+3.  **Phase 3:** Enabled predictive planning with **RUL Estimation**.
