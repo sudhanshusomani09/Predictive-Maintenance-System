@@ -86,3 +86,19 @@ This project demonstrates a complete **End-to-End Predictive Maintenance Pipelin
 1.  **Phase 1:** Established a baseline with **Random Forest** (Feature Engineering).
 2.  **Phase 2:** Automated fault detection with **Deep Learning (CNN)**.
 3.  **Phase 3:** Enabled predictive planning with **RUL Estimation**.
+
+
+---
+##  Phase 4: Deployment (Digital Twin Dashboard)
+To make the models accessible to non-experts, I built a **Real-Time Streamlit Dashboard**.
+
+### **Features**
+* **Drag-and-Drop Interface:** Upload raw vibration files directly.
+* **Dual-Model Pipeline:**
+    1.  **Fault Detection:** Instantly flags "Healthy" vs "Critical" status using the Phase 2 CNN.
+    2.  **RUL Estimation:** If a fault is found, the Phase 3 Regressor calculates the % Life Remaining.
+* **Live Visualization:** Plots the downsampled vibration signal for manual inspection.
+
+### **Demo**
+![Dashboard Screenshot](dashboard_demo_2.png)
+
